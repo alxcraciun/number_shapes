@@ -76,7 +76,6 @@ class _HomePageState extends State<HomePage> {
                     try {
                       int.parse(value);
                     } catch (e) {
-                      print(e);
                       return 'Please enter a natural number!';
                     }
                     if(int.parse(value) < 0) {
