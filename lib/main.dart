@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
           const Padding(
             padding: EdgeInsets.fromLTRB(16.0, 16.0, 8.0, 8.0),
             child: Text(
-                "Please input a number to see if it is square or triangular.",
+                "Please input a number to see if it is square or cube.",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                       return AlertDialog(
                         title: Text(_textController.text),
                         content: SingleChildScrollView(
-                          child: Text('Number ${_textController.text} is both triangular and square'),
+                          child: Text('Number ${_textController.text} is both cube and square'),
                         ),
                         actions: <Widget>[
                           TextButton(
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                     return AlertDialog(
                       title: Text(_textController.text),
                       content: SingleChildScrollView(
-                        child: Text('Number ${_textController.text} is NEITHER triangular, nor square')
+                        child: Text('Number ${_textController.text} is NEITHER cube, nor square')
                       ),
                       actions: <Widget>[
                         TextButton(
