@@ -70,10 +70,13 @@ class _HomePageState extends State<HomePage> {
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter something!';
+                  } else if (RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return 'The number provided is too big';
                   } else {
                     try {
                       int.parse(value);
                     } catch (e) {
+                      print(e);
                       return 'Please enter a natural number!';
                     }
                     if(int.parse(value) < 0) {
@@ -93,10 +96,6 @@ class _HomePageState extends State<HomePage> {
             final value = int.parse(_textController.text);
             final squareRoot = pow(value, 1/2).round();
             final cubeRoot = pow(value, 1/3).round();
-
-            print(value);
-            print(pow(value, 1/2));
-            print(pow(value, 1/3));
 
             if (squareRoot * squareRoot == value) {
               if (cubeRoot * cubeRoot * cubeRoot == value) {
