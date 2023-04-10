@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'dart:math' show pow;
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const NumberShapesApp());
@@ -29,8 +29,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _formKey = GlobalKey<FormState>();
-  final _textController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _textController = TextEditingController();
 
   @override
   void dispose() {
@@ -46,31 +46,26 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
           child: Column(
-        children: [
+        children: <Widget>[
           const Padding(
             padding: EdgeInsets.fromLTRB(16.0, 16.0, 8.0, 8.0),
-            child: Text(
-                "Please input a number to see if it is square or cube.",
+            child: Text('Please input a number to see if it is square or cube.',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                 )),
           ),
           Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: Form(
               key: _formKey,
               child: TextFormField(
-                keyboardType: const TextInputType.numberWithOptions(
-                  signed: false,
-                  decimal: false,
-                ),
+                keyboardType: TextInputType.number,
                 controller: _textController,
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter something!';
-                  } else if (RegExp(r'^[0-9]+$').hasMatch(value)) {
+                  } else if (RegExp(r'^\d+$').hasMatch(value)) {
                     return 'The number provided is too big';
                   } else {
                     try {
@@ -78,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                     } catch (e) {
                       return 'Please enter a natural number!';
                     }
-                    if(int.parse(value) < 0) {
+                    if (int.parse(value) < 0) {
                       return 'Please enter a positive number!';
                     }
                   }
@@ -92,9 +87,9 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            final value = int.parse(_textController.text);
-            final squareRoot = pow(value, 1/2).round();
-            final cubeRoot = pow(value, 1/3).round();
+            final int value = int.parse(_textController.text);
+            final int squareRoot = pow(value, 1 / 2).round();
+            final int cubeRoot = pow(value, 1 / 3).round();
 
             if (squareRoot * squareRoot == value) {
               if (cubeRoot * cubeRoot * cubeRoot == value) {
@@ -116,10 +111,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       );
-                    }
-                );
-              }
-              else {
+                    });
+              } else {
                 // it's square
                 showDialog(
                     context: context,
@@ -138,11 +131,9 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       );
-                    }
-                );
+                    });
               }
-            }
-            else if (cubeRoot * cubeRoot * cubeRoot == value) {
+            } else if (cubeRoot * cubeRoot * cubeRoot == value) {
               // it's cube
               showDialog(
                   context: context,
@@ -161,9 +152,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     );
-                  }
-              );
-
+                  });
             } else {
               // it's neither
               showDialog(
@@ -172,8 +161,7 @@ class _HomePageState extends State<HomePage> {
                     return AlertDialog(
                       title: Text(_textController.text),
                       content: SingleChildScrollView(
-                        child: Text('Number ${_textController.text} is NEITHER cube, nor square')
-                      ),
+                          child: Text('Number ${_textController.text} is NEITHER cube, nor square')),
                       actions: <Widget>[
                         TextButton(
                           child: const Text('Ok'),
@@ -183,8 +171,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     );
-                  }
-              );
+                  });
             }
           }
         },
