@@ -76,8 +76,11 @@ class _HomePageState extends State<HomePage> {
                     } catch (e) {
                       return 'Please enter a natural number!';
                     }
-                    return null;
+                    if(int.parse(value) < 0) {
+                      return 'Please enter a positive number!';
+                    }
                   }
+                  return null;
                 },
               ),
             ),
@@ -88,8 +91,8 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             final value = int.parse(_textController.text);
-            final squareRoot = pow(value, 1/2).toInt();
-            final cubeRoot = pow(value, 1/3).toInt();
+            final squareRoot = pow(value, 1/2).round();
+            final cubeRoot = pow(value, 1/3).round();
 
             print(value);
             print(pow(value, 1/2));
